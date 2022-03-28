@@ -9,11 +9,11 @@ USER STORIES
 ```
 As a bank client
 So I can put money into my account
-I want to deposit a specific amount of money
+I want to perform a transaction to deposit money into my account
 
 As a bank client
 So I can get money out of my account
-I want to withdraw a specific amount of money
+I want to perform a transaction to withdraw money from my account
 
 As a bank client
 So I can see the state of my account
