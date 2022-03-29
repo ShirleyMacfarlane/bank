@@ -5,6 +5,7 @@
 As a < type of user>, I want < some goal >, so that < some reason >
 
 2. Create a domain model diagram. SEE : images folder for domain model
+I have three different classes : An Account class to keep track of the account balance, account withdrawals and account deposits. I have a Transaction class to keep track of the transaction history. Finally, I have a Statement class which prints an account statement when requested.
 
 USER STORIES
 ```
@@ -28,6 +29,7 @@ date || credit || debit || balance
 ```
 
 HOW TO RUN USING IRB
+See screen shot in images folder
 ```
 3.0.0 :001 > require "./lib/account"
 3.0.0 :002 > require "./lib/transaction"
@@ -46,6 +48,7 @@ HOW TO RUN USING IRB
 3.0.0 :010 > 
 ````
 TESTING (rspec)
+See screen shot in images folder
 ````
 rspec test coverage:
 Finished in 0.00497 seconds (files took 0.10698 seconds to load)
