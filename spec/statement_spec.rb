@@ -1,6 +1,5 @@
 require_relative '../lib/account'
 require_relative '../lib/statement'
-#require_relative '../lib/transaction'
 
 describe Statement do
   subject { Statement.new(Account.new) }
@@ -25,7 +24,7 @@ describe Statement do
   describe '.format_print' do
     it 'it formats a given transaction' do
       result = subject.send(:format_print, ['28/03/2022', 'deposit', 5, 10])
-      expect(result).to eq('28/03/2022 || 5.00 || || 10.00')
+      expect(result).to eq(['28/03/2022 || 5.00 || || 10.00'])
     end
   end
 

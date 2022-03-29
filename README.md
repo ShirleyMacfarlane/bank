@@ -1,8 +1,9 @@
 # Bank Challenge
 
 ## What I tried to do
-1. create some basic the User Stories:
+1. To create some basic the User Stories:
 As a < type of user>, I want < some goal >, so that < some reason >
+
 2. Create a domain model diagram. SEE : images folder for domain model
 
 USER STORIES

@@ -31,7 +31,7 @@ describe Account do
       expect(subject.balance).to eq(300)
     end
     it 'it should raise an error if the amount withdrawn exceeds the account balance' do
-      expect { subject.withdraw(500) }.to raise_error("You do not have sufficient funds to withdraw 500. Your current account balance is 0")
+      expect { subject.withdraw(500) }.to raise_error('You do not have sufficient funds to withdraw 500. Your current account balance is 0')
     end
   end
 end
