@@ -5,7 +5,10 @@
 As a < type of user>, I want < some goal >, so that < some reason >
 
 2. Create a domain model diagram. SEE : images folder for domain model
-I have three different classes : An Account class to keep track of the account balance, account withdrawals and account deposits. I have a Transaction class to keep track of the transaction history. Finally, I have a Statement class which prints an account statement when requested.
+I have three different classes : 
+Account Class - Responsible for maintaining the account balance.
+Transaction Class - Responsible for maintaining transaction history 
+Statement Class - Responsible for printing statements
 
 USER STORIES
 ```
