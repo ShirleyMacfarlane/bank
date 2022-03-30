@@ -7,8 +7,8 @@ As a < type of user>, I want < some goal >, so that < some reason >
 2. Create a domain model diagram. SEE : images folder for domain model
 I have three different classes : 
 Account Class - Responsible for maintaining the account balance.
-Transaction Class - Responsible for maintaining transaction history 
-Statement Class - Responsible for printing statements
+Transaction Class - Responsible for maintaining transaction information
+Statement Class - Responsible for printing statement
 
 USER STORIES
 ```
