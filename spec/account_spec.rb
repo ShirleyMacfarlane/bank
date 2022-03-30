@@ -2,6 +2,7 @@ require_relative '../lib/account'
 
 describe Account do
   subject { Account.new }
+  time = Time.now.strftime('%d/%m/%Y')
 
   describe '.initialize' do
     it 'returns an initial balance of zero on creation' do

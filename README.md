@@ -34,21 +34,26 @@ date || credit || debit || balance
 HOW TO RUN USING IRB
 See screen shot in images folder
 ```
+shirleymacfarlane@Shirleys-MacBook-Air bank % irb
 3.0.0 :001 > require "./lib/account"
-3.0.0 :002 > require "./lib/transaction"
-3.0.0 :003 > require "./lib/statement"
-3.0.0 :004 > account = Account.new
-3.0.0 :005 > account.deposit(2000)
- => [["28/03/2022", "deposit", 2000, 2000]] 
-3.0.0 :006 > account.deposit(1000)
- => [["28/03/2022", "deposit", 1000, 3000], ["28/03/2022", "deposit", 2000, 2000]] 
-3.0.0 :007 > account.withdraw(500)
- => [["28/03/2022", "withdraw", 500, 2500], ["28/03/2022", "deposit", 1000, 3000], ["28/03/2022", "deposit", 2000, 2000]] 
-3.0.0 :008 > statement = Statement.new(account)
- => #<Statement:0x00000001280b6480 @account=#<Account:0x0000000128087ce8 @balance=2500, @transaction=#<Transaction:0x0000000128087c98 @transactions=[["28/03/... 
-3.0.0 :009 > statement.print_statement
- => [["date || credit || debit || balance"], ["28/03/2022 || || 500.00 || 2500.00"], ["28/03/2022 || 1000.00 || || 3000.00"], ["28/03/2022 || 2000.00 || || 2000.00"]] 
-3.0.0 :010 > 
+ => true 
+3.0.0 :002 > account = Account.new
+ => #<Account:0x000000012d306f50 @balance=0, @transactions=[]> 
+3.0.0 :003 > account.deposit(1000)
+ => [["29/03/2022", "deposit", 1000, 1000]] 
+3.0.0 :004 > account.deposit(2000)
+ => [["29/03/2022", "deposit", 1000, 1000], ["29/03/2022", "deposit", 2000, 3000]] 
+3.0.0 :005 > account.withdraw(500)
+ => [["29/03/2022", "deposit", 1000, 1000], ["29/03/2022", "deposit", 2000, 3000], ["29/03/2022", "withdraw", 500, 2500]] 
+3.0.0 :006 > s = Statement.new(account)
+ => #<Statement:0x000000012d017f38 @account=#<Account:0x000000012d306f50 @balance=2500, @transactions=[["29/03/2022", "deposit", 1000, 1000], ["29/03/2022",... 
+3.0.0 :007 > s.print_statement
+date || credit || debit || balance
+29/03/2022 || || 500.00 || 2500.00
+29/03/2022 || 2000.00 || || 3000.00
+29/03/2022 || 1000.00 || || 1000.00
+ => [["29/03/2022", "withdraw", 500, 2500], ["29/03/2022", "deposit", 2000, 3000], ["29/03/2022", "deposit", 1000, 1000]] 
+3.0.0 :008 > 
 ````
 TESTING (rspec)
 See screen shot in images folder
@@ -71,19 +76,17 @@ rspec tests for Account class
 
 rspec tests for the Transaction class
 1. .initialize
-   'sets an empty array on creation'
-2. .set
-  'sets a transaction'
-3. .get
-   'gets a transaction'
+   'sets a transaction type' 
+   'sets a transaction amount'  
+   'sets a transaction time'
 
-rspec tests for the Transaction class
- tests for Statement class
+rspec tests for the Statement class 
 1. .print_statement
-   'it prints a statement' 
-private methods   
-2. .format_print
-   'it formats a given transaction' 
+   'it prints a statement'
+2. test the printed output
+   'it should print a header and one transaction'   
+
+private method
 3 format_currency (Formatted to two decimal places)
    'it returns a value formatted to two decimal places: input with no decimal places' 
    'it returns a value formatted to two decimal places : input with one decimal place'

@@ -1,23 +1,16 @@
 require_relative '../lib/transaction'
 
 describe Transaction do
-  subject { Transaction.new }
-  time = Time.now.strftime('%d/%m/%Y')
-
-  describe '.initialize' do
-    it 'sets an empty array on creation' do
-      expect(subject.transactions.length).to be 0
+  let(:transaction) {Transaction.new("deposit", 1000, "29/03/2022")}
+  context "initialize" do
+    it 'sets a transaction type' do
+      expect(transaction.type).to eq("deposit")
     end
-  end
-
-  describe '.set' do
-    it 'sets a transaction' do
-      expect(subject.set('withdraw', 10, 5)).to eq([[time, 'withdraw', 10, 5]])
+    it 'sets a transaction amount' do
+      expect(transaction.amount).to eq(1000)
     end
-
-    it 'gets a transaction' do
-      subject.set('withdraw', 10, 5)
-      expect(subject.get).to eq([[time, 'withdraw', 10, 5]])
+    it 'sets a transaction time' do
+      expect(transaction.time).to eq("29/03/2022")
     end
   end
 end

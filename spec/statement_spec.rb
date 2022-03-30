@@ -2,29 +2,27 @@ require_relative '../lib/account'
 require_relative '../lib/statement'
 
 describe Statement do
-  subject { Statement.new(Account.new) }
+  let(:account) {double :account}
+  subject { Statement.new(account) }
 
-  describe '.print_statement' do
-    it 'it prints a statement' do
-      time = Time.now.strftime('%d/%m/%Y')
-      account = Account.new
-      account.deposit(1000)
-      account.deposit(2000)
-      account.withdraw(500)
+   describe '.print_statement' do
+    it 'it prints a statement' do 
+      account = Account.new 
+      account.instance_variable_set(:@transactions, [["30/03/2022", "deposit", 1000, 1000]] )
       statement = Statement.new(account)
+      expect(account.transactions).to eq ([["30/03/2022", "deposit", 1000, 1000]])
       expect(statement.print_statement).to eq(
-        [['date || credit || debit || balance'],
-         ["#{time} || || 500.00 || 2500.00"],
-         ["#{time} || 2000.00 || || 3000.00"],
-         ["#{time} || 1000.00 || || 1000.00"]]
+        [["30/03/2022", "deposit", 1000, 1000]]
       )
     end
   end
 
-  describe '.format_print' do
-    it 'it formats a given transaction' do
-      result = subject.send(:format_print, ['28/03/2022', 'deposit', 5, 10])
-      expect(result).to eq(['28/03/2022 || 5.00 || || 10.00'])
+  describe "test the printed output" do
+    it 'it should print a header and one transaction' do
+      account = Account.new 
+      account.instance_variable_set(:@transactions, [["30/03/2022", "deposit", 1000, 1000]] )
+      statement = Statement.new(account)
+      expect{ statement.print_statement }.to output("date || credit || debit || balance\n30/03/2022 || 1000.00 || || 1000.00\n").to_stdout
     end
   end
 
