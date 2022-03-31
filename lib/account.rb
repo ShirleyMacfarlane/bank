@@ -28,7 +28,7 @@ class Account
   private
 
   def store_transaction(transaction)
-    this_transaction = [transaction.time, transaction.type, transaction.amount, @balance]
+    this_transaction = {:time => transaction.time, :type => transaction.type, :amount => transaction.amount, :balance => @balance}
     @transactions.push(this_transaction)
   end
 end

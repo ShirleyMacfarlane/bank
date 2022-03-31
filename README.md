@@ -10,6 +10,8 @@ Account Class - Responsible for maintaining the account balance.
 Transaction Class - Responsible for maintaining transaction information
 Statement Class - Responsible for printing statement
 
+I have changed the array of transaction arrays to be an array of transaction hashes in the account.rb file. I felt that this made the code more readable in the statement.rb file.
+ 
 USER STORIES
 ```
 As a bank client
@@ -33,28 +35,27 @@ date || credit || debit || balance
 
 HOW TO RUN USING IRB
 See screen shot in images folder
-```
-shirleymacfarlane@Shirleys-MacBook-Air bank % irb
+
+````
 3.0.0 :001 > require "./lib/account"
  => true 
-3.0.0 :002 > account = Account.new
- => #<Account:0x000000012d306f50 @balance=0, @transactions=[]> 
-3.0.0 :003 > account.deposit(1000)
- => [["29/03/2022", "deposit", 1000, 1000]] 
+ => #<Account:0x00000001279f9598 @balance=0, @transactions=[]> 
+ => [{:time=>"31/03/2022", :type=>"deposit", :amount=>1000, :balance=>1000}] 
 3.0.0 :004 > account.deposit(2000)
- => [["29/03/2022", "deposit", 1000, 1000], ["29/03/2022", "deposit", 2000, 3000]] 
+ => [{:time=>"31/03/2022", :type=>"deposit", :amount=>1000, :balance=>1000}, {:time=>"31/03/2022", :type=>"deposit", :amount=>2000, :balance=>3000}] 
 3.0.0 :005 > account.withdraw(500)
- => [["29/03/2022", "deposit", 1000, 1000], ["29/03/2022", "deposit", 2000, 3000], ["29/03/2022", "withdraw", 500, 2500]] 
+ => [{:time=>"31/03/2022", :type=>"deposit", :amount=>1000, :balance=>1000}, {:time=>"31/03/2022", :type=>"deposit", :amount=>2000, :balance=>3000}, {:time=>"31/03/2022", :type=>"withdraw", :amount=>500, :balance=>2500}] 
 3.0.0 :006 > s = Statement.new(account)
- => #<Statement:0x000000012d017f38 @account=#<Account:0x000000012d306f50 @balance=2500, @transactions=[["29/03/2022", "deposit", 1000, 1000], ["29/03/2022",... 
+ => #<Statement:0x0000000124987b08 @account=#<Account:0x00000001279f9598 @balance=2500, @transactions=[{:time=>"31/03/2022", :type... 
 3.0.0 :007 > s.print_statement
 date || credit || debit || balance
-29/03/2022 || || 500.00 || 2500.00
-29/03/2022 || 2000.00 || || 3000.00
-29/03/2022 || 1000.00 || || 1000.00
- => [["29/03/2022", "withdraw", 500, 2500], ["29/03/2022", "deposit", 2000, 3000], ["29/03/2022", "deposit", 1000, 1000]] 
-3.0.0 :008 > 
+31/03/2022 || || 500.00 || 2500.00
+31/03/2022 || 2000.00 || || 3000.00
+31/03/2022 || 1000.00 || || 1000.00
+ => [{:time=>"31/03/2022", :type=>"withdraw", :amount=>500, :balance=>2500}, {:time=>"31/03/2022", :type=>"deposit", :amount=>2000, :balance=>3000}, {:time=>"31/03/2022", :type=>"deposit", :amount=>1000, :balance=>1000}] 
+3.0.0 :008 >
 ````
+
 TESTING (rspec)
 See screen shot in images folder
 ````

@@ -9,11 +9,11 @@ describe Statement do
     it 'it prints a statement' do
       account = double ('account')
       allow(account).to receive(:balance) {0}
-      allow(account).to receive(:transactions) {[["30/03/2022", "deposit", 1000, 1000]]} 
+      allow(account).to receive(:transactions) {[{:time =>"31/03/2022", :type => "deposit", :amount => 2000, :balance => 2000}]} 
       statement = Statement.new(account)
-      expect(account.transactions).to eq ([["30/03/2022", "deposit", 1000, 1000]])
+      expect(account.transactions).to eq ([{:time => "31/03/2022", :type =>"deposit", :amount => 2000, :balance => 2000}])
        expect(statement.print_statement).to eq(
-         [["30/03/2022", "deposit", 1000, 1000]]
+        [{:time=>"31/03/2022", :type => "deposit", :amount => 2000, :balance => 2000}] 
        )
     end
   end
@@ -21,9 +21,9 @@ describe Statement do
   describe "test the printed output" do
     it 'it should print a header and one transaction' do
       allow(account).to receive(:balance) {0}
-      allow(account).to receive(:transactions) {[["30/03/2022", "deposit", 1000, 1000]]} 
+      allow(account).to receive(:transactions) {[{:time => "31/03/2022", :type =>"deposit", :amount => 1000, :balance => 1000}]} 
       statement = Statement.new(account)
-      expect{ statement.print_statement }.to output("date || credit || debit || balance\n30/03/2022 || 1000.00 || || 1000.00\n").to_stdout
+      expect{ statement.print_statement }.to output("date || credit || debit || balance\n31/03/2022 || 1000.00 || || 1000.00\n").to_stdout
     end
   end
 

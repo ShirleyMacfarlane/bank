@@ -14,12 +14,11 @@ class Statement
     transactions = transactions.reverse
     transactions.each do |transaction|
       this_credit = '|| '
-      this_debit = ' || || '
-      amount = format_currency(transaction[2]).to_s
-      transaction[1] == 'withdraw' ? (this_debit = amount + ' || ') : (this_credit = amount)
-      print "#{transaction[0]} || #{this_credit}#{this_debit}#{format_currency(transaction[3]).to_s}\n"
+      this_debit = ' || || ' 
+      amount = format_currency(transaction[:amount]).to_s
+      transaction[:type] == 'withdraw' ? (this_debit = amount + ' || ') : (this_credit = amount)
+      print "#{transaction[:time]} || #{this_credit}#{this_debit}#{format_currency(transaction[:balance]).to_s}\n"
     end
-    #nil
   end
 
   private
